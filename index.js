@@ -53,7 +53,6 @@ app.post('/api/auth', (req, res) => {
       return res.json({result: result, token: token}).status(200)
     })
   })
-  
 })
 
 app.get('/', (req, res)=>{
