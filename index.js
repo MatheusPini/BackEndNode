@@ -1,5 +1,8 @@
 const express = require('express')
+const Sequelize = require('sequelize')
+require('./src/DB')
 const bodyParser = require('body-parser')
+const UserController = require('./src/Controllers/UserController')
 const cors = require('cors')
 const app = express()
 const mysql = require('mysql')
@@ -54,7 +57,8 @@ app.post('/api/auth', (req, res) => {
     })
   })
 })
-
+app.post('/users', UserController.store)
+app.post('/users/login', UserController.auth)
 app.get('/', (req, res)=>{
     res.send("teste")
 })
