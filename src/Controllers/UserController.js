@@ -41,25 +41,5 @@ module.exports = {
         }else{
             return res.json({result: user, token: token, message: "Usuário não encontrado!"})
         }
-        // const auth = await User.findAll({
-        //     where: {
-        //         email: login,
-        //         senha: senhaHash
-        //     }
-        // })
-        // if(auth.length < 1){
-        //     return res.json({result: auth, message: "nao autorizado"}).status(401)
-        // }
-        // auth.map((index)=>{
-        //     const token = jwt.sign({
-        //         id: index.id,
-        //         email: index.email,
-        //         senha: index.senha
-        //     }, process.env.npm_package_env__PRIVATE_KEY,
-        //     {
-        //         expiresIn: "1h"
-        //     })
-        //     return res.json({result: auth, token: token}).status(200)
-        // })
     }
 }
