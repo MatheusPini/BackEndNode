@@ -7,6 +7,7 @@ const cors = require('cors')
 const app = express()
 const mysql = require('mysql')
 const jwt = require('jsonwebtoken')
+const login_authorization = require('./src/middleware/auth')
 const db = mysql.createPool(
   {
     host: 'localhost',
@@ -57,7 +58,7 @@ app.post('/api/auth', (req, res) => {
     })
   })
 })
-app.post('/users', UserController.store)
+app.post('/users', login_authorization, UserController.store)
 app.post('/users/login', UserController.auth)
 app.get('/', (req, res)=>{
     res.send("teste")
