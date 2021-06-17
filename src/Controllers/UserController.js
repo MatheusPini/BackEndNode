@@ -1,6 +1,7 @@
 const User = require('../Models/User')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const authJWT = require('../Config/authToken')
 const salt = bcrypt.genSaltSync(10)
 module.exports = {
     async store(req, res){
@@ -30,9 +31,9 @@ module.exports = {
                     id: user.id,
                     email: user.email,
                     senha: user.senha
-                }, process.env.npm_package_env__PRIVATE_KEY,
+                }, authJWT.secret,
                 {
-                    expiresIn: "1h"
+                    expiresIn: authJWT.expireIn
                 })
                 return res.json({result: user, token: token, message: "Login efetuado com sucesso!"})
             }else{
@@ -41,5 +42,15 @@ module.exports = {
         }else{
             return res.json({result: user, token: token, message: "Usuário não encontrado!"})
         }
+    },
+    async list(req, res){
+        const users = await User.findAll()
+        if(users.length > 0){
+            return res.status(200).json({result: users, message: "autenticado"})
+        }
+        return res.status(401).json({
+            result: users,
+            message: "não autenticado"
+        })
     }
 }
