@@ -44,6 +44,8 @@ module.exports = {
         }
     },
     async list(req, res){
+        const {token} = req.body
+        
         const users = await User.findAll()
         if(users.length > 0){
             return res.status(200).json({result: users, message: "autenticado"})
