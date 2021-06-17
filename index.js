@@ -12,7 +12,10 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 app.post('/users', login_authorization, UserController.store)
 app.post('/users/login', UserController.auth)
-app.get('/usersList', login_authorization, UserController.list)
+app.post('/usersList', login_authorization, UserController.list)
+app.get('/', ()=>{
+  dsa
+})
 app.listen(3002, () => {
   console.log("runnig on port 3002")
 })

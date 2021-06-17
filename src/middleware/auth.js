@@ -7,6 +7,6 @@ module.exports = (req, res, next)=>{
         req.usuario = decode
         next()
     } catch (error) {
-        return res.json({message: "Falha na autenticação"})
+        return res.status(401).json({message: "Falha na autenticação"})
     }
 }

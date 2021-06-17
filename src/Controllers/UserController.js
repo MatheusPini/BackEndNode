@@ -47,10 +47,8 @@ module.exports = {
         const users = await User.findAll()
         if(users.length > 0){
             return res.status(200).json({result: users, message: "autenticado"})
+        }else{
+            return res.status(200).json({result: users, message: "autenticado"})
         }
-        return res.status(401).json({
-            result: users,
-            message: "não autenticado"
-        })
     }
 }
